@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Employee, EmployeePerformance } from '../types/Employee';
-import { getActiveEmployees, getDailyPerformanceReport, getEmployeeAssignments } from '../utils/employeeStorage';
+import { getActiveEmployees, getDailyPerformanceReport } from '../utils/employeeStorage';
 
 const EmployeePerformanceComponent: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
@@ -163,7 +163,7 @@ const EmployeePerformanceComponent: React.FC = () => {
               <tbody>
                 {performanceData
                   .sort((a, b) => b.completedAssignments - a.completedAssignments)
-                  .map((performance, index) => {
+                  .map((performance) => {
                     const completionRate = performance.totalAssignments > 0 
                       ? (performance.completedAssignments / performance.totalAssignments) * 100 
                       : 0;

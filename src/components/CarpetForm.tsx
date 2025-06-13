@@ -55,7 +55,7 @@ const CarpetForm: React.FC = () => {
     deposit: 0,
   });
 
-  const [errors, setErrors] = useState<Partial<CarpetFormData>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof CarpetFormData, string>>>({});
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [presentEmployees, setPresentEmployees] = useState<Employee[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -105,7 +105,7 @@ const CarpetForm: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<CarpetFormData> = {};
+    const newErrors: Partial<Record<keyof CarpetFormData, string>> = {};
 
     if (!formData.customerId) newErrors.customerId = 'Customer is required';
     if (!formData.employeeId) newErrors.employeeId = 'Employee is required';

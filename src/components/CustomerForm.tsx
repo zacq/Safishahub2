@@ -33,7 +33,7 @@ const CustomerForm: React.FC = () => {
     notes: '',
   });
 
-  const [errors, setErrors] = useState<Partial<CustomerFormData>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof CustomerFormData, string>>>({});
   const [presentEmployees, setPresentEmployees] = useState<Employee[]>([]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const CustomerForm: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<CustomerFormData> = {};
+    const newErrors: Partial<Record<keyof CustomerFormData, string>> = {};
 
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';

@@ -4,7 +4,6 @@ import { Customer } from '../types/Customer';
 import { Employee } from '../types/Employee';
 import { 
   loadCarpets, 
-  getTodayCarpets,
   getEmployeeCarpetWorkload,
   updateCarpetStatus 
 } from '../utils/carpetStorage';

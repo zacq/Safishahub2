@@ -4,13 +4,8 @@ import { loadCustomers } from '../utils/storage';
 import { Customer } from '../types/Customer';
 import { getActiveEmployees, getTodayAttendance, getTodayAssignments } from '../utils/employeeStorage';
 import { getCarpetStats } from '../utils/carpetStorage';
-import { Employee, DailyAttendance, WorkAssignment } from '../types/Employee';
 
 const Dashboard: React.FC = () => {
-  const [customers, setCustomers] = useState<Customer[]>([]);
-  const [employees, setEmployees] = useState<Employee[]>([]);
-  const [attendance, setAttendance] = useState<DailyAttendance[]>([]);
-  const [assignments, setAssignments] = useState<WorkAssignment[]>([]);
   const [stats, setStats] = useState({
     totalCustomers: 0,
     totalVisits: 0,
@@ -36,11 +31,6 @@ const Dashboard: React.FC = () => {
     const todayAttendance = getTodayAttendance();
     const todayAssignments = getTodayAssignments();
     const carpetStats = getCarpetStats();
-
-    setCustomers(loadedCustomers);
-    setEmployees(loadedEmployees);
-    setAttendance(todayAttendance);
-    setAssignments(todayAssignments);
 
     const totalVisits = loadedCustomers.reduce((sum, customer) => sum + customer.totalVisits, 0);
     const recentCustomers = loadedCustomers
