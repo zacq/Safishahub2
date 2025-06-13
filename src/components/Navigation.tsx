@@ -46,6 +46,21 @@ const Navigation: React.FC = () => {
             Performance
           </Link>
         </li>
+        <li>
+          <Link to="/carpets" className={isActive('/carpets')}>
+            Carpets
+          </Link>
+        </li>
+        <li>
+          <Link to="/add-carpet" className={isActive('/add-carpet')}>
+            Add Carpet
+          </Link>
+        </li>
+        <li>
+          <Link to="/carpet-tracking" className={isActive('/carpet-tracking')}>
+            Carpet Tracking
+          </Link>
+        </li>
       </ul>
     </nav>
   );

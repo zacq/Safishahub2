@@ -9,6 +9,9 @@ import EmployeeForm from './components/EmployeeForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeAttendance from './components/EmployeeAttendance';
 import EmployeePerformance from './components/EmployeePerformance';
+import CarpetForm from './components/CarpetForm';
+import CarpetList from './components/CarpetList';
+import CarpetTracking from './components/CarpetTracking';
 import './App.css';
 
 function App() {
@@ -26,6 +29,9 @@ function App() {
             <Route path="/add-employee" element={<EmployeeForm />} />
             <Route path="/attendance" element={<EmployeeAttendance />} />
             <Route path="/performance" element={<EmployeePerformance />} />
+            <Route path="/carpets" element={<CarpetList />} />
+            <Route path="/add-carpet" element={<CarpetForm />} />
+            <Route path="/carpet-tracking" element={<CarpetTracking />} />
           </Routes>
         </main>
       </div>

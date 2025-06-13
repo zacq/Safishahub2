@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { loadCustomers } from '../utils/storage';
 import { Customer } from '../types/Customer';
 import { getActiveEmployees, getTodayAttendance, getTodayAssignments } from '../utils/employeeStorage';
+import { getCarpetStats } from '../utils/carpetStorage';
 import { Employee, DailyAttendance, WorkAssignment } from '../types/Employee';
 
 const Dashboard: React.FC = () => {
@@ -17,6 +18,16 @@ const Dashboard: React.FC = () => {
     totalEmployees: 0,
     presentToday: 0,
     activeAssignments: 0,
+    carpetStats: {
+      totalCarpets: 0,
+      todayCarpets: 0,
+      pendingCarpets: 0,
+      inProgressCarpets: 0,
+      completedCarpets: 0,
+      deliveredCarpets: 0,
+      totalRevenue: 0,
+      todayRevenue: 0,
+    },
   });
 
   useEffect(() => {
@@ -24,6 +35,7 @@ const Dashboard: React.FC = () => {
     const loadedEmployees = getActiveEmployees();
     const todayAttendance = getTodayAttendance();
     const todayAssignments = getTodayAssignments();
+    const carpetStats = getCarpetStats();
 
     setCustomers(loadedCustomers);
     setEmployees(loadedEmployees);
@@ -45,6 +57,7 @@ const Dashboard: React.FC = () => {
       totalEmployees: loadedEmployees.length,
       presentToday,
       activeAssignments,
+      carpetStats,
     });
   }, []);
 
@@ -106,7 +119,41 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-3">
+      {/* Carpet Statistics */}
+      <div>
+        <h3 style={{ marginBottom: '1rem' }}>Carpet Management - Today</h3>
+        <div className="grid grid-4" style={{ marginBottom: '2rem' }}>
+          <div className="card">
+            <h4>Total Carpets</h4>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#6f42c1' }}>
+              {stats.carpetStats.totalCarpets}
+            </p>
+          </div>
+
+          <div className="card">
+            <h4>Today's Jobs</h4>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#6f42c1' }}>
+              {stats.carpetStats.todayCarpets}
+            </p>
+          </div>
+
+          <div className="card">
+            <h4>In Progress</h4>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffc107' }}>
+              {stats.carpetStats.inProgressCarpets}
+            </p>
+          </div>
+
+          <div className="card">
+            <h4>Carpet Revenue</h4>
+            <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#28a745' }}>
+              ${stats.carpetStats.totalRevenue.toFixed(2)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-4">
         <div className="card">
           <h3>Customer Actions</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
@@ -130,6 +177,21 @@ const Dashboard: React.FC = () => {
             </Link>
             <Link to="/performance" className="btn btn-secondary">
               View Performance
+            </Link>
+          </div>
+        </div>
+
+        <div className="card">
+          <h3>Carpet Actions</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <Link to="/add-carpet" className="btn btn-primary">
+              Add Carpet Job
+            </Link>
+            <Link to="/carpets" className="btn btn-secondary">
+              View All Carpets
+            </Link>
+            <Link to="/carpet-tracking" className="btn btn-secondary">
+              Carpet Tracking
             </Link>
           </div>
         </div>
